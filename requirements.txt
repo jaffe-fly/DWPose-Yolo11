@@ -1,0 +1,13 @@
+numpy
+opencv-python
+onnx
+onnxruntime
+torch
+ultralytics
+ruamel.yaml
+matplotlib
+# Triton clients (HTTP/gRPC). Install CUDA toolchain if using GPU SHM.
+tritonclient[http,grpc]
+# CuPy: pick the wheel matching your CUDA version, e.g. cupy-cuda12x or cupy-cuda11x
+cupy
+

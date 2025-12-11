@@ -1,0 +1,35 @@
+name: "yolo11m"
+platform: "onnxruntime_onnx"
+max_batch_size: 4
+default_model_filename: "yolo11m.onnx"
+
+
+input [
+  {
+    name: "images"  # Common YOLO ONNX export name, verify with check script
+    data_type: TYPE_FP16  # May be TYPE_FP16 if half=True
+    dims: [ 3, -1, -1 ]  # May need batch dimension if dynamic=True
+  }
+]
+
+output [
+  {
+    name: "output0"  # Common YOLO ONNX export name, verify with check script
+    data_type: TYPE_FP16  # May be TYPE_FP16 if half=True
+    dims: [ -1, -1 ]  # Dynamic shape, adjust based on actual output
+  }
+]
+
+instance_group [
+  {
+    count: 1
+    kind: KIND_GPU
+    gpus: [0]  
+  }
+]
+
+dynamic_batching {
+  preferred_batch_size: [1, 2, 4]
+  max_queue_delay_microseconds: 500
+}
+
