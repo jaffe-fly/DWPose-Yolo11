@@ -1,0 +1,8 @@
+dwpose:
+  # Detection model thresholds
+  det_conf: 0.5
+  det_iou: 0.25
+
+  # Pose estimation thresholds
+  pose_score_thr: 0.6       # Increased from 0.3 to filter low-quality keypoints
+
